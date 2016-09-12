@@ -1,0 +1,12 @@
+The project has three APIs.
+
+GET
+{base_url}/myretail/v1/product/{id}
+
+POST/PUT
+{base_url}/myretail/v1/product/
+
+
+Backend is Mongodb:
+
+Used an instance from https://mlab.com
