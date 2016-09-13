@@ -25,7 +25,7 @@ public class ProductRetrieveService {
     String productName = retrieveProductName.retrieveProductName(productId);
 
     if(productName == null) {
-      throw new ApiException("Product is missing in the catalog", "RETAIL-103");
+      throw new ApiException("Not valid product in system: This product ID does not represent a valid product", "RETAIL-103");
     }
 
     Product product = productRepository.findById(productId);

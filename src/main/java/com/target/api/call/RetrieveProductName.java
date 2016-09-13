@@ -58,6 +58,11 @@ public class RetrieveProductName {
 
     String name = null;
     Products products = getProductsDetail(id);
+
+    if(checkIfErrorExist(products)) {
+      return name;
+    }
+
     if(products != null && products.getProductCompositeResponse() != null
         && products.getProductCompositeResponse().getItems() != null) {
       Optional<Item> itemData = products.getProductCompositeResponse().getItems().parallelStream().findFirst();
@@ -68,6 +73,25 @@ public class RetrieveProductName {
       }
     }
     return name;
+  }
+
+  private boolean checkIfErrorExist(Products products) {
+    if(products != null && products.getProductCompositeResponse() != null
+        && products.getProductCompositeResponse().getItems() != null) {
+      Optional<Item> itemData = products.getProductCompositeResponse().getItems().parallelStream().findFirst();
+
+      // Checking if itemData is Present
+      if(itemData.isPresent()) {
+        Item item = itemData.get();
+        if(item.getErrors() != null && !item.getErrors().isEmpty()) {
+          Error error = item.getErrors().parallelStream().findFirst().get();
+          if(error.getMessage() != null) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
 
 }

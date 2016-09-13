@@ -51,6 +51,24 @@ public class Item {
   private List<AlternateDescription> alternateDescription = new ArrayList<AlternateDescription>();
   @JsonProperty("features")
   private List<Feature> features = new ArrayList<Feature>();
+  @JsonProperty("errors")
+  private List<Error> errors = new ArrayList<Error>();
+
+  /**
+   * @return The errors
+   */
+  @JsonProperty("errors")
+  public List<Error> getErrors() {
+    return errors;
+  }
+
+  /**
+   * @param errors The errors
+   */
+  @JsonProperty("errors")
+  public void setErrors(List<Error> errors) {
+    this.errors = errors;
+  }
 
   /**
    * @return The identifier
