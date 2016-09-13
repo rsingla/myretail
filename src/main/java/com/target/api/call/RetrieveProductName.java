@@ -67,10 +67,19 @@ public class RetrieveProductName {
         && products.getProductCompositeResponse().getItems() != null) {
       Optional<Item> itemData = products.getProductCompositeResponse().getItems().parallelStream().findFirst();
       if(itemData.isPresent()) {
-        Item item = itemData.get();
-        // Assuming this is not null
-        name = item.getGeneralDescription();
+        name = descriptionValue(itemData.get());
       }
+    }
+    return name;
+  }
+
+  private String descriptionValue(Item item) {
+    String name = item.getGeneralDescription();
+    if(name == null || name.length() < 1) {
+      name = item.getOnlineDescription().getValue();
+    }
+    if(name == null || name.length() < 1) {
+      name = item.getAlternateDescription().get(0).getTypeDescription();
     }
     return name;
   }

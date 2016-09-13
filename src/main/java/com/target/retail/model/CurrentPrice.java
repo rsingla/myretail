@@ -1,10 +1,13 @@
 package com.target.retail.model;
 
+import javax.validation.constraints.Digits;
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.target.api.validation.CurrencyTypeValidation;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -12,8 +15,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class CurrentPrice {
 
   @JsonProperty("value")
+  @Digits(message = "Invalid Currency value entered", fraction = 2, integer = 1000, groups = ProductValidate.class)
   private Double value;
+
   @JsonProperty("currency_code")
+  @CurrencyTypeValidation(message = "Invalid Currency Code entered", groups = ProductValidate.class)
   private String currencyCode;
 
   /**

@@ -1,11 +1,14 @@
 package com.target.retail.service;
 
 import java.net.URISyntaxException;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.target.api.call.RetrieveProductName;
+import com.target.api.call.ValidationUtil;
+import com.target.retail.exception.ApiError;
 import com.target.retail.exception.ApiException;
 import com.target.retail.model.Product;
 import com.target.retail.product.service.ProductRepository;
@@ -22,6 +25,9 @@ public class ProductInsertService {
   @Autowired
   RetrieveProductName retrieveProductName;
 
+  @Autowired
+  ValidationUtil validationUtil;
+
   /**
    * This method insert the data in the mongodb. Please visit {@link Product} for the request and response data.
    * @param product
@@ -30,6 +36,12 @@ public class ProductInsertService {
    * @throws URISyntaxException
    */
   public Product insertProduct(Product product) throws ApiException, URISyntaxException {
+
+    Set<ApiError> apiErrors = validationUtil.dataValidation(product);
+
+    if(!apiErrors.isEmpty()) {
+      throw new ApiException(apiErrors);
+    }
 
     String productId = product.getProductId();
     Product productValue = productRepository.findById(productId);
@@ -41,9 +53,10 @@ public class ProductInsertService {
 
     // Call ProductName
     String productName = retrieveProductName.retrieveProductName(productId);
-    
+
     if(productName == null) {
-      throw new ApiException("Not valid product in system: This product ID does not represent a valid product", "RETAIL-103");
+      throw new ApiException("Not valid product in system: This product ID does not represent a valid product",
+          "RETAIL-103");
     }
     // Set productName
     product.setName(productName);

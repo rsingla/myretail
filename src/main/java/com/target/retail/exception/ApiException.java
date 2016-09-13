@@ -1,5 +1,7 @@
 package com.target.retail.exception;
 
+import java.util.Set;
+
 public class ApiException extends Exception {
 
   private static final long serialVersionUID = 1L;
@@ -8,6 +10,7 @@ public class ApiException extends Exception {
   private String field;
   private int priority;
   private ApiError apiError = null;
+  private Set<ApiError> apiErrors = null;
 
   public ApiException(String message, String code) {
     this.message = message;
@@ -29,6 +32,10 @@ public class ApiException extends Exception {
 
   public ApiException(ApiError apiError) {
     this.apiError = apiError;
+  }
+
+  public ApiException(Set<ApiError> apiErrors) {
+    this.apiErrors = apiErrors;
   }
 
   public String getMessage() {
@@ -69,6 +76,14 @@ public class ApiException extends Exception {
 
   public void setApiError(ApiError apiError) {
     this.apiError = apiError;
+  }
+
+  public Set<ApiError> getApiErrors() {
+    return apiErrors;
+  }
+
+  public void setApiErrors(Set<ApiError> apiErrors) {
+    this.apiErrors = apiErrors;
   }
 
 }

@@ -22,7 +22,7 @@ public class Product {
   private String id;
 
   @JsonProperty("product_id")
-  @NotEmpty(message = "Product Id cannot be null")
+  @NotEmpty(message = "Product Id cannot be null", groups=ProductValidate.class)
   private String productId;
 
   @JsonProperty("name")

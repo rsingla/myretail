@@ -1,5 +1,8 @@
 package com.target.retail.controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -22,15 +25,20 @@ public class ControllerExceptionHandler {
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(ApiException.class)
   @ResponseBody
-  public ResponseEntity<ApiError> handleApiException(HttpServletRequest req, ApiException exception) {
+  public ResponseEntity<Set<ApiError>> handleApiException(HttpServletRequest req, ApiException exception) {
 
-    ApiError error = new ApiError();
-    error.setField(exception.getField());
-    error.setMessage(exception.getMessage());
-    error.setCode(exception.getCode());
-
-    log.error("Error : " + error);
-
-    return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    if(exception.getApiErrors() != null) {
+      return new ResponseEntity<>(exception.getApiErrors(), HttpStatus.BAD_REQUEST);
+    }
+    else {
+      Set<ApiError> apiErrors = new HashSet<>();
+      ApiError error = new ApiError();
+      error.setField(exception.getField());
+      error.setMessage(exception.getMessage());
+      error.setCode(exception.getCode());
+      log.error("Error : " + error);
+      apiErrors.add(error);
+      return new ResponseEntity<>(apiErrors, HttpStatus.BAD_REQUEST);
+    }
   }
 }
