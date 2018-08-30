@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.target.retail.exception.ApiException;
-import com.target.retail.model.Product;
 import com.target.retail.service.ProductDeleteService;
 
 @Controller
