@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE logback:configuration>
 <configuration>
+	<property name="LOG_PATH" value="${LOG_PATH:-./logs}" />
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%date{YYYY-MM-dd HH:mm:ss.SSS} %level [%thread] %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
 	<appender name="RETAIL-FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/opt/myretail/tomcat/logs/myretail.log</file>
+		<file>${LOG_PATH}/myretail.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-			<fileNamePattern>/opt/myretail/tomcat/logs/myretail.%i.log.zip</fileNamePattern>
+			<fileNamePattern>${LOG_PATH}/myretail.%i.log.zip</fileNamePattern>
 			<minIndex>1</minIndex>
 			<maxIndex>2</maxIndex>
 		</rollingPolicy>
@@ -29,8 +35,8 @@
 
 	<!-- -->
 	<root level="info">
+		<appender-ref ref="CONSOLE" />
 		<appender-ref ref="RETAIL-FILE" />
-		<appender-ref ref="STDOUT" />
 	</root>
 
 </configuration>

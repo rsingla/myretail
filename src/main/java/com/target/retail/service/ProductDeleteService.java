@@ -32,7 +32,7 @@ public class ProductDeleteService {
    * @throws URISyntaxException
    */
   public void deleteProduct(String id) {
-    productRepository.delete(id);
+    productRepository.deleteByProductId(id);
   }
 
 }

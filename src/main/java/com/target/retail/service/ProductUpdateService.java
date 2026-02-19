@@ -37,7 +37,7 @@ public class ProductUpdateService {
     }
 
     String productId = product.getProductId();
-    Product productValue = productRepository.findById(productId);
+    Product productValue = productRepository.findByProductId(productId);
 
     return updateDB(product, productValue);
   }

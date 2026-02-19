@@ -3,8 +3,8 @@ package com.target.api.validation;
 import java.util.Currency;
 import java.util.List;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 public class CurrencyTypeValidationImpl implements ConstraintValidator<CurrencyTypeValidation, String> {
 

@@ -1,6 +1,6 @@
 package com.target.retail.model;
 
-import javax.validation.constraints.Digits;
+import jakarta.validation.constraints.Digits;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 

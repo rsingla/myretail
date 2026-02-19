@@ -1,9 +1,9 @@
 package com.target.retail.model;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -22,7 +22,7 @@ public class Product {
   private String id;
 
   @JsonProperty("product_id")
-  @NotEmpty(message = "Product Id cannot be null", groups=ProductValidate.class)
+  @NotBlank(message = "Product Id cannot be null", groups = ProductValidate.class)
   private String productId;
 
   @JsonProperty("name")

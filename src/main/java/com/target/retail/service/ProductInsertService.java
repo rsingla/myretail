@@ -44,7 +44,7 @@ public class ProductInsertService {
     }
 
     String productId = product.getProductId();
-    Product productValue = productRepository.findById(productId);
+    Product productValue = productRepository.findByProductId(productId);
 
     // Check for mongo Id
     if(productValue != null && productValue.getId() != null) {

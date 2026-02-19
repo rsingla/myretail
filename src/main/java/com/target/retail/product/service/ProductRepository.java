@@ -8,9 +8,11 @@ import com.target.retail.model.Product;
 public interface ProductRepository extends MongoRepository<Product, String> {
 
   @Query("{ 'name' : ?0 }")
-  public Product findByName(String name);
+  Product findByName(String name);
 
   @Query("{ 'productId' : ?0 }")
-  public Product findById(String productId);
+  Product findByProductId(String productId);
+
+  void deleteByProductId(String productId);
 
 }

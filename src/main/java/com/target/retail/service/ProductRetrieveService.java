@@ -28,7 +28,7 @@ public class ProductRetrieveService {
       throw new ApiException("Not valid product in system: This product ID does not represent a valid product", "RETAIL-103");
     }
 
-    Product product = productRepository.findById(productId);
+    Product product = productRepository.findByProductId(productId);
     if(product == null) {
       throw new ApiException("Product is not available in the database", "RETAIL-102");
     }
