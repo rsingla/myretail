@@ -23,6 +23,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>17</java.version>
 		<springdoc.version>2.5.0</springdoc.version>
+		<byte-buddy.version>1.18.5</byte-buddy.version>
 	</properties>
 
 	<dependencies>
