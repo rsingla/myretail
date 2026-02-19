@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.jayway.restassured.RestAssured;
-import com.jayway.restassured.response.Response;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import com.target.api.call.JsonParserUtil;
 import com.target.api.test.util.EnvironmentUrl;
 import com.target.api.test.util.FileReader;

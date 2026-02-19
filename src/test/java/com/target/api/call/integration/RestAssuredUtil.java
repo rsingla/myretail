@@ -2,7 +2,7 @@ package com.target.api.call.integration;
 
 import java.io.IOException;
 
-import com.jayway.restassured.RestAssured;
+import io.restassured.RestAssured;
 import com.target.api.call.JsonParserUtil;
 import com.target.api.test.util.EnvironmentUrl;
 import com.target.api.test.util.FileReader;
